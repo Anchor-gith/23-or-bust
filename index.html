@@ -1,0 +1,1216 @@
+
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="Math,  Maths,  Mathematics,  Numeracy,  Quiz, Test, Arithmetic, Numbers, Calculate, Thinking Skills">
+<meta name="description" content="A game involving mental arithmetic and strategy for two players or one player against the computer.">
+<meta name="abstract" content="A game involving mental arithmetic and strategy for two players or one player against the computer.">
+<meta name="author" content="Transum Mathematics">
+<meta name="copyright" content="(C) Transum Mathematics. https://www.Transum.org">
+<meta name="distribution" content="Global">
+<meta name="robots" content="All">
+<meta name="rating" content="General">
+<meta name="format-detection" content="telephone=no">
+<meta name="thumbnail" content="https://www.transum.org/Go/Thumbnails/306.gif">
+
+<link rel="canonical" href="https://www.transum.org/Software/Fun_Maths/23orBust.asp">
+
+<!--viewport for smartphones-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta property="og:title" content="23 or Bust">
+<meta property="og:url" content="https://www.transum.org/Software/Fun_Maths/23orBust.asp">
+<meta property="og:image" content="https://www.transum.org/Go/Thumbnails324x200/306.gif">
+<meta property="og:site_name" content="Transum">
+<meta property="og:description" content="A game involving mental arithmetic and strategy for two players or one player against the computer.">
+<meta property="og:type" content="website">
+<meta property="fb:admins" content="1306410124">
+
+<title>23 or Bust</title>
+<link rel="stylesheet" type="text/css" href="/include/normalize.css">
+<link rel="stylesheet" type="text/css" href="/Software/Fun_Maths/Games/Game.css">
+<meta property="og:image" content="https://www.transum.org/software/SW/Starter_of_the_day/images/Apple_Transum.png">
+
+<style type="text/css">
+h1 {
+	font-size:56px;
+	font-family:"Luckiest Guy", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	color:white;
+	text-shadow:3px 3px 0 black,-2px -2px 0 black,2px -2px 0 black,-2px 2px 0 black,2px 2px 0 black;
+	padding:2px;
+	margin:2px;
+	letter-spacing:5px;
+}
+#MainContainer {
+	background-color:rgba(255,246,213,0.5);
+	padding-top:15px;
+	padding-bottom:15px;
+	color:black;
+	user-select: none;
+}
+#TheGameBoard {
+	text-align:center;
+	border:0px red solid;
+	margin:auto;
+	width:547px;
+	height:528px;
+	background-image:url('Images/23orBust.PNG');
+	background-repeat:no-repeat;
+	background-position:0px 0px;
+	position:relative;
+}
+#RunningTotal {
+	position:absolute;
+	top:200px;
+	left:202px;
+	border:0px white solid;
+	width:147px;
+	height:auto;
+	display:none;	
+}
+#RunningTotal h3{
+	font-size:26px;
+	margin-bottom:5px;
+}
+#RunningTotal h4{
+	font-size:50px;
+	margin-top:4px;
+}
+
+#Lifesaver {
+	position:absolute;
+	top:212px;
+	left:203px;
+	cursor:move;
+}
+#MainContainer div.CentreAd p {
+	text-align:center;
+}
+h2.Subhead {
+	color:#FFF6D5;
+	margin-top:-40px;
+	letter-spacing:2px;
+	margin-left:40px;
+}
+.PLr {
+	font-weight:bold;
+	padding:5px;
+}
+.ButNew, .StartButtons a {
+	display: inline-block;
+	white-space: nowrap;
+	background-color: #ccc;
+	border: 1px solid #777;
+	padding: 7px 15px;
+	margin: 4px;
+	font: bold 16px/20px Arial, Helvetica;
+	text-decoration: none;
+	color: black;
+	border-radius: 4px;
+	background: repeating-linear-gradient(0deg, red 40px, yellow 100px);
+	/* linear-gradient(0deg, #784C1F 1%, #EED715 20%, #EED715); Better - more control over the stops*/
+	cursor:pointer;  
+}   
+.ButNew:hover, .StartButtons a:hover {
+	background-color: #eee;        
+	background: repeating-linear-gradient(0deg, red 35px, pink 90px);
+}
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 100% 0; }
+}
+#WinnersPanel {
+	display:none;
+	position:absolute;
+	top:90px;
+	left:140px;
+	width:250px;
+	height:auto;
+	padding:10px;
+	background-color:yellow;
+	border:4px yellow solid;
+	border-radius:20px;
+	background-image:url('/Software/SW/Starter_of_the_day/Images/Backgrounds/YellowSwirl.png');
+	animation: animatedBackground 10s linear infinite;
+}
+#WinnersPanel p{
+	margin:5px;
+	text-align:center;
+}
+#Trophybutton {
+	background-color:red;
+	color:white;
+	font-weight:bold;
+	font-size:18px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin:5px;
+	}
+#Bust, #ComputerWins, #FirstToThree {
+	display:none;
+	position:absolute;
+	top:100px;
+	left:140px;
+	width:250px;
+	height:auto;
+	padding:10px;
+	background-color:silver;
+	border:4px red solid;
+	border-radius:20px;
+}
+#FirstToThree {
+	background-color:white;
+	border:4px green solid;
+}
+#Bust p, #ComputerWins p, #FirstToThree p{
+	margin:5px;
+	text-align:center;
+}
+
+#WhosTurn {
+	position:absolute;
+	background-color:#FFD42A;
+	position:absolute;
+	top:10px;
+	left:10px;
+	width:290px;
+	height:auto;
+	padding:10px;
+	border:4px black solid;
+	border-radius:20px;
+}
+#WhosTurn p{
+	margin:5px;
+	font-family:"Arial Rounded MT Bold",Arial, Helvetica, sans-serif;
+	font-size:22px;
+	text-align:center;
+}
+#InitialForm {
+	border:thick gray groove;
+	background-color:#CCCCCC;
+	position:absolute;
+	top:130px;
+	left:140px;
+	width:250px;
+	height:auto;
+	padding:10px;
+	display:none;
+}
+#InitialForm {
+	opacity:0.95;
+}
+#InitialForm p{
+	text-align:left;
+	margin:5px;
+}
+#InitialForm input {
+	width:110px;
+	font-weight:bold;
+}
+#Instructions {
+	background-color:rgba(255,246,213,0.7);
+	border:1px black solid;
+	margin:auto;
+	width:95%;
+	border-radius:5px;
+}
+#Instructions p{
+	margin:10px;
+	font-size:16px;
+	line-height:1.3em;
+}
+.SomeSpaceAroundDiv {
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color:transparent;
+}
+.RecommendedActivity {
+	background-color:white;
+	border:thin black solid;
+	width:200px;
+	height:280px;
+	padding:4px;
+	margin:auto;
+	text-align: center;
+	border-radius: 4px;
+	box-shadow: 0px 0px 8px #000;
+	font-size:11px;
+}
+#Instructions .RecommendedActivity p{
+	color:gray;
+	font-size:11px;
+	margin:0px;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+}
+.RecommendedActivity h4{
+	font-family:Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	font-size:14px; margin: 0px; color:black;text-align:center;
+}
+.RecommendedActivity h5{
+	font-family:"Times New Roman", Times, serif;
+	font-size:13px;
+	margin: 0px;
+	letter-spacing: 2px;
+	color:gray;
+}
+.RecommendedActivity hr{
+	width:80%;
+	color:red;
+	height:2px;
+}
+.RecommendedActivity img {
+	margin-top:5px;
+	margin-bottom:4px;
+	width:162px;
+	height:100px;
+	border:thin gray solid;
+	box-shadow: 0px 0px 4px #000;
+}
+.RecommendedActivity a {
+	border:0px;
+}
+div.comment_div p.comment_title {
+	background-color:#764F43;
+	background-image:none;
+	background: linear-gradient(to right, #764F43 0%, #FFFFFF 1%, #764F43 2%, white 95%, white 100%);
+	font-weight:bold;
+	color:white;
+	margin-bottom:0px;
+	padding:11px 20px 10px;
+	text-align:left;
+}
+.comment_title::before {
+	content:'From ';
+}
+.comment_date {
+	display:none;
+}
+p.comment_body {
+	text-align:left;
+	margin-left:50px;
+}
+.QuotationMarks {
+	font-weight:bold;
+	font-family:Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+#TopBlackBar {
+	background-color:black;
+	padding:5px;
+	text-align:center;
+	color:azure;
+}
+
+</style>
+
+<script src="/jquery/2020/jquery-3.5.1.min.js" type="text/javascript"></script>
+<script src="/jquery/2020/jquery-ui.min.js" type="text/javascript"></script>
+<!-- Note that jquery-slider does not work with later versions of Jquery -->
+<!-- See random Students for a better slider than the jQuery one --><!--<script src="https://jquery-ui-for-ipad-and-iphone.googlecode.com/svn/trunk/jquery.ui.ipad.js" type="text/javascript"></script>
+<script src="/jquery/js/jquery.ui.ipad.js" type="text/javascript"></script>-->
+<script src="/jquery/js/jquery.ui.touch-punch.min.js"></script>
+
+<script type="text/javascript">
+var CircleLeft = new Array(203,205,423,341,69,-18);
+var CircleTop = new Array(212,-21,142,399,399,144);
+var RunningTotal;
+var Players = 0;
+var CurrPlayer = 1;
+var CurrRingcircle = 0;
+var PlayersScore = new Array(0,0,0);
+var NewTarget = 23;
+
+$(document).ready(function(){
+	$('#WhosTurn').effect('pulsate',{times:2},3000);
+	if(NewTarget != 23){
+		$('#OnePlayerButton').hide();
+		$('h1').text(NewTarget + ' OR BUST').css({'margin':'30px auto 30px'});
+		$('h2.Subhead').text('A number strategy game for two players');
+	}
+});
+
+function InitiateTwoPlayer(){
+	$('.StartButtons').hide();
+	$('#WhosTurn').hide();
+	$('#InitialForm').show();
+}
+function StartTwoPlayer(){
+	$('#FirstToThree').hide();
+	$('#WhosTurn').show();
+	$('#Lifesaver').animate({'left':CircleLeft[0]+'px','top':CircleTop[0]+'px'});
+	$('input[name=Level]').val(1);
+	$('input[name=Other_Text]').val('Beat Friend');
+	Players = 2;
+	RunningTotal = 0;
+	CurrRingcircle = 0;
+	$('#RunningTotal h4').html(RunningTotal);
+	$('#InitialForm').hide();
+	//$('#ScoreBoard1 h2').text($('#P1').val());
+	//$('#ScoreBoard2 h2').text($('#P2').val());
+	//$('#Description').hide();
+	//$('#NewTurn').show();
+	$('#WhosTurn').show();
+	$('#WhosTurn p').text($('#P'+CurrPlayer).val()+'\'s Turn. Drag the lifesaver to a number.').effect('pulsate',{times:2},3000);
+	$('#Lifesaver').draggable({
+      stop: function() {
+      	SnapToCircle($(this));
+      }
+    });
+}
+
+function StartOnePlayer(){
+	$('.StartButtons').hide();
+	$('#WhosTurn').show();
+	$('#Lifesaver').animate({'left':CircleLeft[0]+'px','top':CircleTop[0]+'px'});
+	$('input[name=Level]').val(2);
+	$('input[name=Other_Text]').val('Beat Computer');
+	Players = 1;
+	CurrPlayer = 1;
+	RunningTotal = 0;
+	CurrRingcircle = 0;
+	$('#RunningTotal h4').html(RunningTotal);
+	$('#P1').val('Your')
+	$('#P2').val('Computer');
+	$('#WhosTurn p').text($('#P'+CurrPlayer).val()+' Turn. Drag the lifesaver to a number.').effect('pulsate',{times:2},3000);
+	$('#Lifesaver').draggable({
+      stop: function() {
+      	SnapToCircle($(this));
+      }
+    });
+}
+function SnapToCircle(e){
+      		var DistFrom = new Array();
+      		var X = 0; var Y = 0;
+      		var SmallestDist = 9999;
+      		var ClosestCircle = 0;
+      		for (var i=1; i<=5; i++ ){
+      			X = Math.abs(parseInt(e.css('left')) - CircleLeft[i]);
+      			Y = Math.abs(parseInt(e.css('top')) - CircleTop[i]);
+				DistFrom[i] = Math.sqrt(X*X+Y*Y);
+				if(DistFrom[i]<SmallestDist){
+					SmallestDist = DistFrom[i];
+					ClosestCircle = i;
+				}
+			}
+      		e.animate({'left':CircleLeft[ClosestCircle]+'px','top':CircleTop[ClosestCircle]+'px'});
+      		ReactToMove(ClosestCircle);
+}
+function ReactToMove(n){
+	if(CurrRingcircle == n){
+		$('#Lifesaver').animate({'left':'203px','top':'320px'});
+		return;
+	}
+	RunningTotal+=n;
+	CurrRingcircle = n;
+	$('#RunningTotal').show()
+	$('#RunningTotal h4').html(RunningTotal);
+	if(RunningTotal==NewTarget){Win();}
+	if(RunningTotal>NewTarget){Bust();}
+	if(RunningTotal<NewTarget){NextTurn();}
+}
+function NextTurn(n){
+	CurrPlayer = CurrPlayer%2+1;
+	var Txt = '';
+	if(Players==1 && CurrPlayer==1){
+		Txt = 'Your Turn. Drag the lifesaver to a number other than ' + CurrRingcircle + '.';
+	}else{
+		Txt = $('#P'+CurrPlayer).val()+'\'s Turn. Drag the lifesaver to a number other than ' + CurrRingcircle + '.';
+	}
+	$('#WhosTurn p').text(Txt).effect('pulsate',{times:2},3000);
+	if(Players==1 && CurrPlayer==2){
+		ComputerMoves();
+	}
+}
+function Win(){
+	$('#WhosTurn').hide();
+	if(Players==1 && CurrPlayer==2){
+		$('#ComputerWins').show();
+	}else{
+		PlayersScore[CurrPlayer]++;
+		if(Players==2 && PlayersScore[1]<3 && PlayersScore[2]<3){
+			$('#FirstToThree').show();
+			$('.WinnersName').text($('#P'+CurrPlayer).val() + ' wins!');
+			$('#FirstToThree p').html('Current score:<br>' + $('#P1').val() + ' : ' + PlayersScore[1] + '<br>' + $('#P2').val() + ' : ' + PlayersScore[2]);
+		}else{
+			$('#WinnersPanel').show();
+			$('.WinnersName').html('You Win!');
+			$.getScript('/include/Celebrate/Celebrate.js');
+		}
+	}
+	CurrPlayer = CurrPlayer%2+1;
+}
+function Bust(){
+	$('#WhosTurn p').text('Bust! The total is ' + RunningTotal + ' which is over 23.');
+	if(Players==2){
+		PlayersScore[3-CurrPlayer]++;
+		if(PlayersScore[1]<3 && PlayersScore[2]<3){
+			CurrPlayer = 3 - CurrPlayer;
+			$('#FirstToThree').show();
+			$('.WinnersName').text($('#P'+CurrPlayer).val() + ' wins!');
+			$('#FirstToThree p').html('Current score:<br><strong>' + $('#P1').val() + ' : ' + PlayersScore[1] + '<br>' + $('#P2').val() + ' : ' + PlayersScore[2] + '</strong>');
+		}else{
+			$('#WinnersPanel').show();
+			$('#WinnersPanel p').html($('#P'+CurrPlayer).val() + ' has gone bust so the winner is:');
+			$('.WinnersName').html($('#P'+(3-CurrPlayer)).val());
+			$.getScript('/include/Celebrate/Celebrate.js');
+		}
+	}else{
+		if(CurrPlayer==1){
+			$('#Bust').show();
+		}else{
+			$('#WinnersPanel').show();
+			$('#WinnersPanel p').text('The computer has gone bust...');
+			$('.WinnersName').html('You have Won!');
+			$.getScript('/include/Celebrate/Celebrate.js');
+			CurrPlayer==1;
+		}
+	}
+}
+function Reset(){
+	$('#Bust').hide();
+	$('#ComputerWins').hide();
+	$('#WinnersPanel').hide();
+	$('#Lifesaver').animate({'left':CircleLeft[0]+'px','top':CircleTop[0]+'px'});
+	if(Players==1){
+		StartOnePlayer();
+	}else{
+		PlayersScore[1]=0;
+		PlayersScore[2]=0;
+		InitiateTwoPlayer();
+	}
+}
+
+var Target=new Array();
+Target[22]=new Array(0,0,1,1,1,1);
+Target[21]=new Array(0,2,1,2,2,2);
+Target[20]=new Array(0,3,3,0,3,3);
+Target[19]=new Array(0,4,4,4,2,4);
+Target[18]=new Array(0,5,5,5,5,0);
+Target[17]=new Array(0,3,3,0,3,3);
+Target[16]=new Array(0,0,0,0,0,0);
+Target[15]=new Array(0,0,1,1,1,1);
+Target[14]=new Array(0,3,3,2,3,3);
+Target[13]=new Array(0,5,5,5,5,3);
+Target[12]=new Array(0,4,4,4,0,4);
+Target[11]=new Array(0,5,5,5,5,0);
+Target[10]=new Array(0,0,0,0,0,0);
+Target[9]=new Array(0,0,1,1,1,1);
+Target[8]=new Array(0,2,1,2,2,2);
+Target[7]=new Array(0,3,3,0,3,3);
+Target[6]=new Array(0,4,4,4,5,4);
+Target[5]=new Array(0,5,5,5,5,0);
+Target[4]=new Array(0,3,3,0,3,3);
+Target[3]=new Array(0,0,0,0,0,0);
+Target[2]=new Array(0,0,1,1,1,1);
+Target[1]=new Array(0,2,1,1,1,1);
+
+function ComputerMoves(){
+	var Choice = Target[RunningTotal][CurrRingcircle];
+	
+	if(Choice==0){Choice=1}
+	if(Choice==CurrRingcircle){
+		if(CurrRingcircle==1){Choice=2}else{Choice=1}
+	}
+	$('#WhosTurn p').text('The computer is thinking ...');
+	$('#Lifesaver').draggable({ disabled: true });
+	
+	$('#Lifesaver').delay(1000).effect('shake',{times:4,distance:5},1500).animate({'left':CircleLeft[Choice]+'px','top':CircleTop[Choice]+'px'},3000, function(){
+		ReactToMove(Choice);
+		$('#Lifesaver').draggable({ disabled: false });
+	});
+}
+function rn(Lowest,Highest) {
+	return(Math.floor(Math.random()* (Highest-Lowest+1))+Lowest);
+}
+
+</script>
+
+</head>
+<body>
+
+	<div class="CentreAd">
+<div id="TopBlackBar">
+
+<div class="Dontshowforprinting">
+<div style="width:728px !important; max-height:50px !important; height:50px !important; text-align:center; overflow:hidden !important; margin:auto;">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3448116359683998"
+     crossorigin="anonymous"></script>
+<!-- June 2022 new 728x50 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:50px;"
+     data-ad-client="ca-pub-3448116359683998"
+     data-ad-slot="7380049927"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+</div>
+
+</div>
+	</div>
+
+
+<h1><img alt="23 or Bust" src="/software/SW/Starter_of_the_day/Images/Titles/23orbust.png" style="width: 747px; height: 116px"></h1>
+<h2 class="Subhead">A number strategy game for one or two players</h2>
+
+
+
+<div class="Container" id="MainContainer">
+	
+	<div id="WhosTurn"><p>Click one of the orange buttons below to begin.</p></div>
+	
+	<div id="TheGameBoard">
+		<div id="RunningTotal"><h3>Total</h3><h4>0</h4></div>
+		<img alt="Lifesaver" id="Lifesaver" src="Images/Lifesaver.png" style="width: 147px; height: 147px">
+		
+		
+		<div id="WinnersPanel">
+			<p>Congratulations</p>
+			<p class="WinnersName" style="font-weight:bold;font-size:26px;">You Have Won!</p>
+			<img src="/software/SW/Starter_of_the_day/images/AppleVector.png" alt="Transum" style="width:148px;height:197px;display:block;margin:auto;">
+			<form method="post" id="TrophyForm" name="TrophyForm" action="/Trophies/Apply_Trophy.asp">
+			<input type="hidden" value="306" name="id_item">
+  			<input type="hidden" value="0" name="Level">
+  			<input type="hidden" value="Winner!" name="Other_Text">
+			<input type="submit" id="Trophybutton" value="Claim Your Trophy" name="Trophy">
+			</form>
+			<a class="ButNew" onclick="CelebrateMusic.pause();confetti.stop();Reset();" style="width:200px;">Start Again</a>
+		</div>
+		
+		<div id="Bust">
+			<h2>BUST</h2>
+			<p>You have gone over 23!</p>
+			<p class="WinnersName" style="font-weight:bold;font-size:26px;">The Computer Wins</p>
+			<img alt="Laugh" src="/Software/SW/Starter_of_the_day/Images/Faces/Laugh.png" style="width:99px;height:102px;display:block;margin:auto;">
+			<a class="ButNew" onclick="Reset();" style="width:200px;">Start Again</a>			
+		</div>
+
+		<div id="ComputerWins">
+			<h2>The computer wins</h2>
+			<p>Don't be discouraged, play against the computer to learn its strategies.</p>
+			<img alt="Laugh" src="/Software/SW/Starter_of_the_day/Images/Faces/Laugh.png" style="width:99px;height:102px;display:block;margin:auto;">
+			<a class="ButNew" onclick="Reset();" style="width:200px;">Start Again</a>			
+		</div>
+
+		<div id="FirstToThree">
+			<h2 class="WinnersName" style="font-weight:bold;font-size:26px;"></h2>
+			<h3>First To Three</h3>
+			<p></p>
+			<img alt="Three" src="/Software/SW/Starter_of_the_day/Images/Numbers/3.gif" style="width:173px;height:180px;display:block;margin:auto;">
+			<a class="ButNew" onclick="StartTwoPlayer();" style="width:200px;">Continue</a>			
+		</div>
+		
+		<div id="InitialForm">		
+			<p>You will take it in turns to move the lifesaver ring on to a number. This number is added to the running total for this game. The object of the game is to reach a total of 23. If a player makes the running total greater than 23 they have lost.</p>
+			<p>May the best player win!</p>
+			<p class="PLr" id="PLr1"><span style="padding:8px;color:black;margin-left:20px;">Player 1:</span> <input id="P1" type="text" value="Player 1"></p>
+			<p class="PLr" id="PLr2"><span style="padding:8px;color:black;margin-left:20px;">Player 2:</span> <input id="P2" type="text" value="Player 2"></p>
+			<a class="ButNew" onclick="StartTwoPlayer();" style="width:200px;">Start</a>
+		</div>
+
+	</div>
+
+	<h2 class="StartButtons"><a href="javascript:void(0)" id="OnePlayerButton" onclick="StartOnePlayer();">One Player Game</a> <a href="javascript:void(0)" onclick="InitiateTwoPlayer();">Two Player Game</a></h2>
+
+	<div id="Instructions">
+	<p>Two players (or one player and the computer) take it in turns to move the lifesaver ring on to a number. This number is added to the running total for this game. The object of the game is to reach a total of 23. If a player makes 
+	the running total greater than 23 they have lost.</p>
+	
+
+<div class="Dontshowforprinting">
+<!-- 23 or Bust Leaderboard -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3448116359683998"
+     data-ad-slot="2493649844"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+	
+	<p>This game also works well with students playing in 
+	pairs at desks around the classroom. After each game the players move to a 
+	new desk, winners moving clockwise around the room and losers moving 
+	anticlockwise.</p>
+	<p>The game will need to be played a number of 
+	times by students before they start to see that there are some strategies 
+	that can be employed.</p>
+	<p>Note that each player has to move the lifesaver ring 
+	to a new number when it is their turn, they cannot stay on the number the 
+	lifesaver ring is on.</p>
+	<p>For the 1 player game above it is always possible to beat the computer as the player always has first move.</p>
+	
+	
+	<p  style="color:red;">The strategy used by the computer to play this game is explained here when you are signed in to your Transum subscription account. If you do not yet have an account and you are a teacher, tutor or parent you can apply for one <a href="/Software/Transum_Buy.asp">here</a>.</p>
+	<p style="color:red;">A Transum subscription also gives you access to the 'Class Admin' student management system, many more teaching resources and opens up ad-free access to the Transum website for you and your pupils.</p>
+	
+	
+	
+	<p>There is a printable <a href="/Maths/Worksheet/?name=23strategy">worksheet</a> to go with this activity.</p>
+	<a href="/Maths/Worksheet/?name=23strategy">
+	<img src="/Go/Thumbnails324x200/625.gif" alt="Worksheet" style="width:324px;height:200px;display:block;margin:auto;">
+	</a>
+
+	
+	
+	<!--googleoff: all-->
+	<table style="margin:auto;"><tr>
+	
+		<td style="text-align:center;padding:10px;">
+		<div class="SomeSpaceAroundDiv">
+			<div class="RecommendedActivity">
+				<h5>Similar</h5>
+				<hr style="margin-bottom:3px;">
+				<h4>Nim</h4>
+				<a href="/go/?to=nim" ><img src="/Go/Thumbnails/325.gif" alt="Nim" ></a>
+				<p>Nim is a mathematical game of strategy in which two players take turns removing objects from groups of objects. Whoever takes the last object wins.<br><br>The short web address is:<br><br><a href="https://www.transum.org/go/?to=nim">Transum.org/go/?to=nim</a></p>
+			</div>
+		</div>
+		</td>
+
+
+		<td style="text-align:center;padding:10px;">
+		<div class="SomeSpaceAroundDiv">
+			<div class="RecommendedActivity">
+				<h5>Suggested</h5>
+				<hr style="margin-bottom:3px;">
+				<h4>Calculator Nim</h4>
+				<a href="/software/SW/Starter_of_the_day/starter_November14.ASP" ><img src="/Software/SW/Starter_of_the_day/Thumbs/324x200/November14.png" alt="Calculator Nim" ></a>
+				<p>A game in which players take turns to add a single-digit number to what is already in the calculator. The winner is the first to 30.<br><br>The short web address is:<br><br><a href="https://www.transum.org/go/?Start=November14">Transum.org/go/?Start=November14</a></p>
+			</div>
+		</div>
+		</td>
+
+
+		<td style="text-align:center;padding:10px;">
+		<div class="SomeSpaceAroundDiv">
+			<div class="RecommendedActivity">
+				<h5>Related</h5>
+				<hr style="margin-bottom:3px;">
+				<h4>Printable 23 or Bust</h4>
+				<p><a href="/Maths/Worksheet/?name=23bustboard" ><img src=/Go/Thumbnails/624.gif alt="Printable 23 or Bust" ></a><p>A printable game board for 23 or Bust. Choose your own object to serve as the lifesaver such as a pencil sharpener, a rubber or a coin.<br><br>Click the link below:<br><br><a href="https://www.transum.org/Maths/Worksheet/?name=23bustboard">23 or Bust Board</a></p>
+			</div>
+		</div>
+		</td>
+		
+		
+	</tr></table>
+	<!--googleon: all-->
+	
+		<div style="text-align:center; margin-top:15px;">
+
+	
+	
+	<style>
+	.share-bar {
+	  display: flex;
+	  flex-wrap: wrap;
+	  gap: 6px;
+	  margin: 1rem 0;
+	  justify-content: center;
+	}
+	
+	.share-btn {
+	  display: inline-flex;
+	  align-items: center;
+	  justify-content: center;
+	  gap: 8px;
+	  padding: 0 10px;
+	  height: 36px;
+	  min-width: 85px;
+	  border: none;
+	  border-radius: 4px;
+	  color: #fff !important;
+	  font-family: Arial, sans-serif;
+	  font-size: 14px;
+	  font-weight: bold;
+	  text-decoration: none;
+	  cursor: pointer;
+	  white-space: nowrap;
+	  transition: opacity 0.2s, transform 0.2s;
+	}
+
+	.share-btn svg {
+	  width: 18px;
+	  height: 18px;
+	  fill: #fff;
+	  flex-shrink: 0;
+	}
+	
+	.share-btn:hover {
+	  opacity: 0.85;
+	  transform: translateY(-5px);
+	}
+
+	
+	.share-btn--pinterest { background: #e60023; }
+	.share-btn--email     { background: #7d7d7d; }
+	.share-btn--native    { background: #5dbb46; }
+	.share-btn--x         { background: #000; }
+	.share-btn--facebook  { background: #1877f2; }
+	.share-btn--reddit    { background: #ff4500; }
+	.share-btn--bluesky { background: #0085ff; }
+	</style>
+	
+	
+	
+	<div class="share-bar">
+	
+	  <!-- Pinterest -->
+	  <a class="share-btn share-btn--pinterest" title="Send to this page to Pinterest"
+	     href="https://pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp&description=23+or+Bust"
+	     target="_blank" rel="noopener" aria-label="Pin on Pinterest">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+	    </svg>
+	    Pin
+	  </a>
+	
+	  <!-- Email -->
+	  <a class="share-btn share-btn--email" title="Create an email to someone about this page"
+	     href="mailto:?subject=23+or+Bust&body=https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp"
+	     aria-label="Share by Email">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+	    </svg>
+	    Email
+	  </a>
+	
+	  <!-- Native Share (Web Share API, falls back to hidden if unsupported) -->
+	  <button class="share-btn share-btn--native" id="nativeShareBtn" title="Share the details of this page"
+	          onclick="nativeShare('', 'https://www.transum.org/Software/Fun_Maths/23orBust.asp')"
+	          aria-label="Share this page">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+	    </svg>
+	    Share
+	  </button>
+	
+	
+			<!-- Bluesky -->
+		<a class="share-btn share-btn--bluesky" title="Create a post on Bluesky about about 23 or Bust"
+		   href="https://bsky.app/intent/compose?text=+https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp"
+		   target="_blank" rel="noopener" aria-label="Share on Bluesky">
+		  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		    <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.568-4.926 1.06-6.495-2.853-7.078a13.731 13.731 0 0 1-.415-.056c.139.017.278.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
+		  </svg>
+		  Share
+		</a>
+
+
+	  <!-- X / Twitter -->
+	  <a class="share-btn share-btn--x" title="Tweet about 23 or Bust"
+	     href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp&text=23+or+Bust"
+	     target="_blank" rel="noopener" aria-label="Post on X">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+	    </svg>
+	    Post
+	  </a>
+	
+	  <!-- Facebook -->
+	  <a class="share-btn share-btn--facebook" title="Post on Facebook about 23 or Bust"
+	     href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp"
+	     target="_blank" rel="noopener" aria-label="Share on Facebook">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.313 0 2.686.236 2.686.236v2.971h-1.513c-1.491 0-1.956.931-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+	    </svg>
+	    Share
+	  </a>
+	
+	  <!-- Reddit -->
+	  <a class="share-btn share-btn--reddit" title="Create a post about 23 or Bust on Reddit"
+	     href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww%2Etransum%2Eorg%2FSoftware%2FFun%5FMaths%2F23orBust%2Easp&title=23+or+Bust"
+	     target="_blank" rel="noopener" aria-label="Share on Reddit">
+	    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+	      <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+	    </svg>
+	    Share
+	  </a>
+	
+	</div>
+	
+	<script>
+	function nativeShare(title, url) {
+	  if (navigator.share) {
+	    navigator.share({ title: title, url: url });
+	  } else {
+	    // Fallback: copy URL to clipboard
+	    navigator.clipboard.writeText(url).then(function() {
+	      alert('Page URL copied to clipboard!');
+	    });
+	  }
+	}
+	
+	// Hide native share button if neither API is available (very old browsers)
+	(function() {
+	  var btn = document.getElementById('nativeShareBtn');
+	  if (btn && !navigator.share && !navigator.clipboard) {
+	    btn.style.display = 'none';
+	  }
+	})();
+	</script>
+	
+	
+	
+<!--
+	<script src="htpps://platform-api.sharethis.com/js/sharethis.js#property=5b0b70b6461c9500119099eb&product=inline-share-buttons"></script>
+	<div class="sharethis-inline-share-buttons"></div>
+-->
+</div>
+
+	</div>
+</div>
+
+
+
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+
+<div class="Container" style="width:800px;height:auto; padding:20px;">
+
+<div style="text-align:center">
+
+<div class="Dontshowforprinting">
+<!--IMPORTANT This assumes adsbygoogle.js has already been loaded in the footer.asp file -->
+<!-- Starter 728x90, updated 28 March 2010 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3448116359683998"
+     data-ad-slot="6570002497"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+</div>
+
+
+<p style="text-align:center;">Click on a link below to explore other parts of 
+the Transum web site:</p>
+<p style="text-align:center; margin-bottom:25px;"><a href="/software/Fun_Maths/default.asp">
+Fun Maths Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/Software/">Transum Software</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/Software/Maths_Map/">Maths Map</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/Tables/Times_Tables.asp">Times Tables</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/software/Fun_Maths/Games.asp">Strategy Games</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="/go/">Go Maths</a></p>
+
+
+
+
+<div style="text-align:center: margin-bottom:25px;">
+
+<div class="Dontshowforprinting">
+<!--IMPORTANT This assumes adsbygoogle.js has already been loaded in the footer.asp file -->
+<!-- Starter 728x90, updated 28 March 2010 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-3448116359683998"
+     data-ad-slot="6570002497"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+
+
+<div class="comment_div">
+				
+		<p class="comment_title">The Penguin Book Of Puzzles, ISBN 978-0-718-18862-7</p>
+		<p class="comment_date">Thursday, January 18, 2018</p>
+		<p class="comment_body"><span class="QuotationMarks">&quot;</span>Turning The Dice Game: This is played with a single die. The first player calls any number, from 1 to 6, and the second player throws the die. Then they take it in turns to roll over the die in any direction they choose, but never giving it more than a quarter turn. The score increases as they proceed, and the player wins who manages to score 
+25 or force their opponent to score beyond 25.
+<br><br>
+I will give an example game. A calls 6, and B happens to throw a 3, making the score 9. Now A decides to turn up 1, scoring 10; B turns up 3, scoring 13; A turns up 6, scoring 19; B turns up 3, scoring 22; A turns up 1, scoring 23; and B turns up 2, scoring 25 and 
+wins.
+<br><br>
+What call should A make in order to have the best chance of winning?<br>
+Remember that the numbers on opposite sides of a correct die always sum to 7.<span class="QuotationMarks">&quot;</span></p>				
+		<p class="comment_title">Jim Underwood, Jimu57@yahoo.com</p>
+		<p class="comment_date">Saturday, March 9, 2019</p>
+		<p class="comment_body"><span class="QuotationMarks">&quot;</span>I have determined that 23 or bust against the computer is only beatable wihen I begin with 5 or 3. Very interesting game.<span class="QuotationMarks">&quot;</span></p>				
+		<p class="comment_title">Karine White, Twitter</p>
+		<p class="comment_date">Wednesday, April 8, 2020</p>
+		<div style="margin:auto;width:504px;">
+<blockquote class="twitter-tweet" data-conversation="none"><p lang="en" dir="ltr">Luca’s favourite is “23 or bust”! <a href="https://t.co/EVZ4QtWxMy">pic.twitter.com/EVZ4QtWxMy</a></p>&mdash; Karina White (@KarinaW30898200) <a href="https://twitter.com/KarinaW30898200/status/1247833378084225026?ref_src=twsrc%5Etfw">April 8, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+</div>				
+		<p class="comment_title">Lizzie, Australia</p>
+		<p class="comment_date">Monday, September 15, 2025</p>
+		<p class="comment_body"><span class="QuotationMarks">&quot;</span>How can I win. Can someone give me some tips.<br>Thanks in advance. :).<span class="QuotationMarks">&quot;</span></p>				
+		<p class="comment_title">David Aston, Birmingham UK</p>
+		<p class="comment_date">Wednesday, March 4, 2026</p>
+		<p class="comment_body"><span class="QuotationMarks">&quot;</span>Ensure you are the one who is on 16 and then you can not lose.<span class="QuotationMarks">&quot;</span></p>				
+		<p class="comment_title">Alistair, New Zealand</p>
+		<p class="comment_date">Thursday, August 13, 2026</p>
+		<p class="comment_body"><span class="QuotationMarks">&quot;</span>I recreated the strategy task on my own spreadsheet to find that no matter what, one player can always force a win. This means that if whoever goes first knows how to do so, they will always win. Similarly, player 1 must play perfectly if player 2 knows how to force a win, which i believe is what's going on with the bot. One comment mentions that being on 16 will always mean you win and that is correct, but along with this 10 and 3 are losses no mattery what number you are on too! (10 being a forced loss is why 5 is the other winning lead, allowing you to force 10 no matter what your opponent plays) I could go on about all of the traps but I believe my comment would be too long then. Although it was fun figuring all of this stuff out, so I'd recommend figuring the rest out yourself!<span class="QuotationMarks">&quot;</span></p>
+</div>
+
+
+
+<p class="comment_invitation">Do you have any comments? It is always useful to receive feedback and helps make this free resource even more useful for those learning Mathematics anywhere in the world.
+<a href="/Include/Comments/Form.asp?pagepath=/Software/Fun_Maths/23orBust.asp" >Click here</a> to enter your comments.</p>
+
+
+
+<div style="text-align:center">
+
+<div class="Dontshowforprinting">
+<div style="width:728px !important; max-height:50px !important; height:50px !important; text-align:center; overflow:hidden !important; margin:auto;">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3448116359683998"
+     crossorigin="anonymous"></script>
+<!-- June 2022 new 728x50 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:50px;"
+     data-ad-client="ca-pub-3448116359683998"
+     data-ad-slot="7380049927"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+	
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3448116359683998" crossorigin="anonymous"></script>
+
+	
+
+<style type="text/css">
+div#FooterNew2024 {
+    width: 100%;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    background-color: #333333;
+        background-image: linear-gradient(
+        to bottom,
+        #111111 0%,
+        #999999 5%,
+        #777777 30%,
+        #444444 70%,
+        #111111 98%,
+        #000000 100%
+    );
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+div#FooterNew2024 > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+div.FooterNew2024_inc_UL {
+    padding: 0px;
+    text-align: left;
+    flex: 1 1 200px;
+    margin: 10px 1px;
+}
+div.FooterNew2024_inc_UL p {
+    font-family: Arial, Helvetica, sans-serif;
+    color: aliceblue;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 2px;
+}
+div.FooterNew2024_inc_UL a {
+    color: lightgrey;
+    font-size: 12px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    text-decoration: none;
+}
+div.FooterNew2024_inc_UL a:visited, div.FooterNew2024_inc_UL a:active {
+    color: lightgrey;
+}
+div.FooterNew2024_inc_UL ul {
+    margin: 2px;
+    padding-left: 0;
+}
+div.FooterNew2024_inc_UL li {
+    list-style: none;
+    line-height: 16px;
+}
+div.FooterNew2024_inc_UL input[type=text], div.FooterNew2024_inc_UL input[type=submit] {
+    font-size: 12px;
+}
+div#FooterSearch {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+#FooterSearch input {
+    font-size: 10px;
+    color: black;
+}
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+}
+.copyright a {
+    font-family: 'Courier New', Courier, monospace;
+    color: silver;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apple-logo {
+	width: 142px;
+	height: 195px;
+	position: absolute;
+	top: -30px;
+	right: 0px;
+}
+.KidSafe {
+	height:59px;
+	width:125px;
+	border:0px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+}
+@media (max-width: 768px) {
+	div#FooterNew2024 {
+		margin:20px auto 0px !important;
+		width: 100% !important;
+	}
+    div#FooterNew2024 > div {
+        flex-direction: column;
+        align-items: center;
+    }
+    div.FooterNew2024_inc_UL {
+        text-align: center;
+    }
+    .apple-logo {
+        position: static !important;
+        display: block;
+        margin: 0 auto 20px;
+    }
+    .KidSafe {
+        position: static !important;
+        display: block;
+        margin: 20px auto 20px;
+    }
+}
+</style>
+
+<div id="FooterNew2024" class="Dontshowforprinting">
+    <div>
+        <img alt="Apple" src="/Software/SW/Starter_of_the_day/Images/Apple2.png" class="apple-logo">
+
+        <div class="FooterNew2024_inc_UL">
+            <p>For Students:</p>
+            <ul>
+	<li><a title="Find an activity for the Maths topic you are studying" href="/Software/Maths_Map/">Maths Map</a></li>
+	<li><a title="Activitied to engage your mathematical skills" href="/go/">Go Maths</a></li>
+	<li><a title="Mathematical games" href="/Software/Game/">Games</a></li>
+	<li><a title="Mathematical puzzles and challenges" href="/Software/Puzzles/">Puzzles</a></li>
+	<li><a title="Learn a Times Table in only 5 days!" href="/Tables/Times_Tables.asp">Times Tables</a></li>
+	<li><a title="An online multiplication table speed test" href="/Software/Tablesmaster/">TablesMaster</a></li>
+	<li><a title="Activities designed to work well on a touch sensitive screen" href="/iPad/Maths.asp">iPad Maths</a></li>
+	<li><a title="Your chance to be a Mathematics detective" href="/Software/Investigations/">Investigations</a></li>
+	<li><a title="Examination type questions similar to those appearing on GCSE and IB Maths exams." href="/Maths/Exam/">Exam Questions</a></li>
+</ul>
+
+
+            <p>&nbsp;</p>
+
+        </div>
+        <div class="FooterNew2024_inc_UL">
+            <p>For Teachers:</p>
+            <ul>
+	<li><a title="A Maths Lesson thinking skills starter for each day of the year" href="/Software/SW/Starter_of_the_day/">Starter of the Day</a></li>
+	<li><a title="Visual Aids to project on to a whiteboard and write on" href="/Software/SW/index.asp">Shine+Write</a></li>
+	<li><a title="Fun mathematical activities for the end of term" href="/Software/Fun_Maths/">Fun Maths</a></li>
+	
+	<li><a title="Read the latest edition of the Transum Newsletter" href="/Newsletter/">Newsletter</a></li>
+	
+	<li><a title="Let the Random Student Generator pick a name at random from your class list" href="/Software/RandomStudents/">Random Names</a></li>
+	
+	
+	<li><a title="Some of the videos available on YouTube that may be of use in Mathematics lessons" href="/Software/SW/YouTube/">Maths Videos</a></li>
+	
+	<!--
+	<li><a title="Getting the best out of portable technology for pupils in Mathematics lessons" href="/Software/OnetoOne/">Laptops in Lessons</a></li>	
+	-->
+	
+	<li><a title="Suggested resources for the first few lessons" href="/Software/Fun_Maths/Back_To_School.asp">Back To School</a></li>	
+	
+	<li><a title="Our online student information management system and lesson planner" href="/Software/FormativeFeedback/">Class Admin</a></li>
+	<li><a id="NC" title="The English National Curriculum for Mathematics with suggested activities" href="/Maths/National_Curriculum/" >Curriculum</a></li>
+</ul>
+        </div>
+        <div class="FooterNew2024_inc_UL">
+            <p>For All:</p>
+            <ul>
+
+	<li><a title="Sign in or subscribe to Transum" href="/Software/FormativeFeedback/LoginOnly.asp">Sign In</a></li>
+
+	<li><a title="Buy a licence to use Transum at your school" href="/Software/Transum_Buy.asp">Create An Account</a></li>
+	<li><a title="Our front door" href="/">Home</a></li>
+	<li><a title="What is Transum?" href="/Software/Transum_About.asp">About Transum</a></li>
+	<li><a title="Find activities to go with the topic you are studying" href="/Software/Transum_Topics.asp">Topics</a></li>
+	<li><a title="Supporting parents supporting their children in Mathematics" href="/Parents/">Parents</a></li>
+	<li><a title="Find out about privacy on the Transum website" href="/Privacy.asp">Privacy Policy</a></li>
+	<li><a title="Contact us by email" href="/Software/Transum_About.asp">Contact Me</a></li>
+	<li><a title="Buy mathematical resources" href="/Software/Transum_Products.asp">Shop</a></li>
+</ul>
+
+
+        </div>
+        <div id="FooterSearch">
+            <form method="get" action="/Search.asp">
+                <input type="text" name="q" placeholder="Search Transum" style="width:120px;">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        
+        <a href="https://www.kidsafeseal.com/" target="_blank"><img alt="Transum.org is a proud supporter of the kidSAFE Seal Program" src="https://www.kidsafeseal.com/supporterlogo/19115794451779121922/transum_supporter.jpg" class="KidSafe"></a> 
+        
+        
+        
+        <div class="copyright">
+            <a title="Transum" href="https://www.transum.org/Software">&copy;1997-2026 WWW.TRANSUM.ORG</a>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+<!-- GOOGLE ANALYTICS START -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YNQM7Z2FK9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YNQM7Z2FK9');
+</script>
+<!-- GOOGLE ANALYTICS END -->
+
+</body>
+</html>
